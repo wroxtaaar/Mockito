@@ -1,25 +1,38 @@
-# Source: https://gist.github.com/dedunumax/54e82214715e35439227
-
-##############################
-## Gradle
-##############################
-bin/
-build/
-out/
+HELP.md
 .gradle
-.gradletasknamecache
-gradle-app.setting
-!gradle-wrapper.jar
+/build/
+*/build/
+/bin/
+*/bin/
+!gradle/wrapper/gradle-wrapper.jar
+*.log
+*.gz
+*.class
 
-
-##############################
-## Visual Studio Code
-##############################
-.vscode/
-.code-workspace
-
-# Misc
+### STS ###
+.apt_generated
 .classpath
+.factorypath
 .project
-.settings/
-.idea/
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+/out/
+*/out/
+out/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
