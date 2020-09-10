@@ -1,4 +1,4 @@
-package externaluber.model;
+package external.uber.model;
 
 // This class is used to deserialize the JSON response from UberAPI.
 // The format of PriceEstimate from Uber API response looks like the following.

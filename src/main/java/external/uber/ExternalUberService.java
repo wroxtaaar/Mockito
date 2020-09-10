@@ -1,5 +1,7 @@
-import externaluber.model.PriceEstimate;
-import helper.GoogleMapsHelper;
+package external.uber;
+
+import external.uber.model.PriceEstimate;
+import internal.helper.GoogleMapsHelper;
 import org.springframework.web.client.RestTemplate;
 
 public class ExternalUberService {

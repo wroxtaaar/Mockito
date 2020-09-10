@@ -1,4 +1,4 @@
-package helper;
+package internal.helper;
 
 public interface GoogleMapsHelper {
 
