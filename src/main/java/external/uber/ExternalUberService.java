@@ -43,13 +43,9 @@ public class ExternalUberService {
 
     String priceEstimateBaseUrl = buildPriceEstimateBaseUrl(startLatitude, startLongitude,
         endLatitude, endLongitude);
-
-    // TODO: If you uncomment the following line, your restTemplate mock won't work.
-    // restTemplate = new RestTemplate();
-
+  
     // Get data by making Uber API call.
     // RestTemplate in Java helps you call an API.
-    restTemplate = new RestTemplate();
     PriceEstimate[] priceEstimates = restTemplate.getForObject(
         priceEstimateBaseUrl, PriceEstimate[].class);
     
@@ -70,28 +66,31 @@ public class ExternalUberService {
   }
 
   // TODO: Uncomment in Milestone 6
+  /*
   public PriceEstimate[] getPriceEstimatesWithBug(Double startLatitude, Double startLongitude,
     Double endLatitude, Double endLongitude) {
 
-  // if (!googleMapsHelper.isValidLocations(startLatitude, endLatitude, startLongitude,
-  //     endLongitude)) {
-  //   return new PriceEstimate[0];
-  // }
-  if (!googleMapsHelper.isValidLocations(startLatitude, startLongitude,
-  endLatitude, endLongitude)) {
-return new PriceEstimate[0];
-}
+    if (!googleMapsHelper.isValidLocations(startLatitude, endLatitude, startLongitude,
+        endLongitude)) {
+      return new PriceEstimate[0];
+    }
 
-  String priceEstimateBaseUrl = buildPriceEstimateBaseUrl(startLatitude, startLongitude,
-      endLatitude, endLongitude);
+    // if (!googleMapsHelper.isValidLocations(startLatitude, startLongitude,
+    //     endLatitude, endLongitude)) {
+    //   return new PriceEstimate[0];
+    // }
+    
+    String priceEstimateBaseUrl = buildPriceEstimateBaseUrl(startLatitude, startLongitude,
+        endLatitude, endLongitude);
 
-  // Get data by making Uber API call.
-  // RestTemplate in Java helps you call an API.
-  PriceEstimate[] priceEstimates = restTemplate.getForObject(
-      priceEstimateBaseUrl, PriceEstimate[].class);
+    // Get data by making Uber API call.
+    // RestTemplate in Java helps you call an API.
+    PriceEstimate[] priceEstimates = restTemplate.getForObject(
+        priceEstimateBaseUrl, PriceEstimate[].class);
 
-  return priceEstimates;
-}
+    return priceEstimates;
+  }
+  */
 
   public String getStartLatitude() {
     return startLatitude;
