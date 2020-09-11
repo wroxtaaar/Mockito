@@ -32,15 +32,15 @@ import external.uber.model.PriceEstimate;
 import internal.helper.GoogleMapsHelper;
 
 
-@ExtendWith(MockitoExtension.class)
-@MockitoSettings(strictness = Strictness.STRICT_STUBS)
+// @ExtendWith(MockitoExtension.class)
+// @MockitoSettings(strictness = Strictness.STRICT_STUBS)
 public class ExternalUberServiceTest {
 
   @Mock
   private GoogleMapsHelper googleMapsHelperMock;
   @Mock
   private RestTemplate restTemplateMock;
-  @InjectMocks
+  // @InjectMocks
   private ExternalUberService externalUberService;
 
   @Test
