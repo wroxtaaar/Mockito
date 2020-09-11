@@ -1,8 +1,10 @@
 package external.uber;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.client.RestTemplate;
+
 import external.uber.model.PriceEstimate;
 import internal.helper.GoogleMapsHelper;
-import org.springframework.web.client.RestTemplate;
 
 public class ExternalUberService {
 
@@ -14,9 +16,10 @@ public class ExternalUberService {
   private String endLatitude;
   private String endLongitude;
 
-  private PriceEstimate[] priceEstimates;
-
+  @Autowired
   private RestTemplate restTemplate;
+  
+  @Autowired
   private GoogleMapsHelper googleMapsHelper;
 
   /**
@@ -32,13 +35,12 @@ public class ExternalUberService {
    */
   public PriceEstimate[] getPriceEstimates(Double startLatitude, Double startLongitude,
       Double endLatitude, Double endLongitude) {
-    // Validate location coordinates
-    if (!googleMapsHelper.isValidLocation(startLatitude, startLongitude,
+
+    if (!googleMapsHelper.isValidLocations(startLatitude, startLongitude,
         endLatitude, endLongitude)) {
-      // If the location is invalid, return an empty array.
       return new PriceEstimate[0];
     }
-    // Construct the UberAPI url based on the source/destination coordinates.
+
     String priceEstimateBaseUrl = buildPriceEstimateBaseUrl(startLatitude, startLongitude,
         endLatitude, endLongitude);
 
@@ -47,8 +49,10 @@ public class ExternalUberService {
 
     // Get data by making Uber API call.
     // RestTemplate in Java helps you call an API.
+    restTemplate = new RestTemplate();
     PriceEstimate[] priceEstimates = restTemplate.getForObject(
         priceEstimateBaseUrl, PriceEstimate[].class);
+    
     return priceEstimates;
   }
 
@@ -64,6 +68,30 @@ public class ExternalUberService {
 
     return apiUrl;
   }
+
+  // TODO: Uncomment in Milestone 6
+  public PriceEstimate[] getPriceEstimatesWithBug(Double startLatitude, Double startLongitude,
+    Double endLatitude, Double endLongitude) {
+
+  // if (!googleMapsHelper.isValidLocations(startLatitude, endLatitude, startLongitude,
+  //     endLongitude)) {
+  //   return new PriceEstimate[0];
+  // }
+  if (!googleMapsHelper.isValidLocations(startLatitude, startLongitude,
+  endLatitude, endLongitude)) {
+return new PriceEstimate[0];
+}
+
+  String priceEstimateBaseUrl = buildPriceEstimateBaseUrl(startLatitude, startLongitude,
+      endLatitude, endLongitude);
+
+  // Get data by making Uber API call.
+  // RestTemplate in Java helps you call an API.
+  PriceEstimate[] priceEstimates = restTemplate.getForObject(
+      priceEstimateBaseUrl, PriceEstimate[].class);
+
+  return priceEstimates;
+}
 
   public String getStartLatitude() {
     return startLatitude;
@@ -97,20 +125,15 @@ public class ExternalUberService {
     this.endLongitude = endLongitude;
   }
 
-  public PriceEstimate[] getPriceEstimates() {
-    return priceEstimates;
-  }
-
-  public void setPriceEstimates(PriceEstimate[] priceEstimates) {
-    this.priceEstimates = priceEstimates;
-  }
-
   public void setRestTemplate(RestTemplate restTemplate) {
     this.restTemplate = restTemplate;
   }
 
-  public void setHelper(GoogleMapsHelper googleMapsHelper) {
+  public void setGoogleMapsHelper(GoogleMapsHelper googleMapsHelper) {
     this.googleMapsHelper = googleMapsHelper;
   }
 
+  public GoogleMapsHelper getGoogleMapsHelper() {
+    return googleMapsHelper;
+  }
 }
