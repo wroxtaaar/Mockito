@@ -326,6 +326,9 @@ public class ExternalUberServiceTest {
   */
 
 
+  /*
+    Reads data from the price_estimate.json file for stubbing API response
+  */
   private PriceEstimate[] loadPriceEstimateList() throws JsonParseException, JsonMappingException, IOException {
     File file = new File("src/test/resources/price_estimate.json");
     ObjectMapper objectMapper = new ObjectMapper();
