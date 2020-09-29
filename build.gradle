@@ -1,0 +1,56 @@
+plugins {
+    id 'java'
+    id 'application'
+    // id 'org.springframework.boot' version '2.2.0.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+wrapper {
+    gradleVersion = '5.4'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.springframework', name: 'spring-web', version: '5.2.2.RELEASE'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.1'
+    compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.10.1'
+
+    testCompile group: 'org.mockito', name: 'mockito-junit-jupiter', version: '3.2.4'
+    testCompile 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testImplementation('org.junit.jupiter:junit-jupiter:5.6.0')
+
+}
+allprojects{
+    test {
+        testLogging.events ("STANDARD_ERROR")
+        testLogging.events ("STANDARD_OUT")
+    }
+}
+
+
+test {
+        useJUnitPlatform {
+        }
+        testLogging.events ("STANDARD_ERROR")
+        testLogging.events ("STANDARD_OUT")
+        afterTest { desc, result ->
+            def output = "Test- ${desc.className}.${desc.name}: ${result.resultType}"
+            println( '\n' + output)
+        }
+        afterSuite { desc, result ->
+            if (!desc.parent) {
+                println "\nTEST RESULT: ${result.resultType}"
+                println "TEST SUMMARY: RAN ${result.testCount} TESTS, " +
+                        "${result.successfulTestCount} SUCCEEDED, " +
+                        "${result.failedTestCount} FAILED, " +
+                        "${result.skippedTestCount} SKIPPED"
+            }
+        }
+    }
