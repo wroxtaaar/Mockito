@@ -99,45 +99,45 @@ public class ExternalUberServiceTest {
 
   @Test
   public void getPriceEstimatesReturnsEmptyArrayOnInvalidStartLatitudeTest() {
-  /*
-  Code Under Test: ExternalUberService.getPriceEstimates()
-  Test case: Check if ExternalUberService.getPriceEstimates() returns empty
-  array on invalid latitude for start location
-  Dependency Layer/Function:
-    1. googleMapsHelper.isValidLocation(String startLatitude, String startLongitude,
-      String endLatitude, String endLongitude);
-  Mock Setup:
-    - Function to mock: googleMapsHelper.isValidLocation()
-      - Input to mock: (some invalid start latitude, any start longitude, any end
-          latitude, any end longitude)
-      - Pre-set output from mock: false
-  Test Input: externalUberService.getPriceEstimates()(parameters should be
-  inline with your mock setup)
-  Expected Test Output: Empty price estimate array
-  */
+    /*
+    Code Under Test: ExternalUberService.getPriceEstimates()
+    Test case: Check if ExternalUberService.getPriceEstimates() returns empty
+    array on invalid latitude for start location
+    Dependency Layer/Function:
+      1. googleMapsHelper.isValidLocation(String startLatitude, String startLongitude,
+        String endLatitude, String endLongitude);
+    Mock Setup:
+      - Function to mock: googleMapsHelper.isValidLocation()
+        - Input to mock: (some invalid start latitude, any start longitude, any end
+            latitude, any end longitude)
+        - Pre-set output from mock: false
+    Test Input: externalUberService.getPriceEstimates()(parameters should be
+    inline with your mock setup)
+    Expected Test Output: Empty price estimate array
+    */
 
-  // Setup
-  Double startLatitude = 137.775231;
-  Double startLongitude = -122.418075;
-  Double endLatitude = 37.775241;
-  Double endLongitude = -122.518075;
+    // Setup
+    Double startLatitude = 137.775231;
+    Double startLongitude = -122.418075;
+    Double endLatitude = 37.775241;
+    Double endLongitude = -122.518075;
 
-  // Setup mock to return preset value of false
-  // when startLatitude parameter is 137.775231
-  ExternalUberService externalUberService = new ExternalUberService();
-  externalUberService.setGoogleMapsHelper(googleMapsHelperMock);
+    // Setup mock to return preset value of false
+    // when startLatitude parameter is 137.775231
+    ExternalUberService externalUberService = new ExternalUberService();
+    externalUberService.setGoogleMapsHelper(googleMapsHelperMock);
 
-  when(googleMapsHelperMock.isValidLocations(eq(137.775231), anyDouble(),
-  anyDouble(), anyDouble()))
-  .thenReturn(false);
+    when(googleMapsHelperMock.isValidLocations(eq(137.775231), anyDouble(),
+    anyDouble(), anyDouble()))
+    .thenReturn(false);
 
-  // get output of the method under test
-  PriceEstimate[] actualPriceEstimates = externalUberService.getPriceEstimates(
-  startLatitude, startLongitude, endLatitude, endLongitude);
+    // get output of the method under test
+    PriceEstimate[] actualPriceEstimates = externalUberService.getPriceEstimates(
+    startLatitude, startLongitude, endLatitude, endLongitude);
 
-  // check if the returned value matches expected value
-  int expectedLength = 0;
-  assertEquals(expectedLength, actualPriceEstimates.length);
+    // check if the returned value matches expected value
+    int expectedLength = 0;
+    assertEquals(expectedLength, actualPriceEstimates.length);
   }
 
   @Test
@@ -250,16 +250,16 @@ public class ExternalUberServiceTest {
 
     
     // Verify the isValidLocation is getting called with correct argumetns
-    verify(googleMapsHelperMock).isValidLocations(startLatitude, startLongitude,
-        endLatitude, endLongitude);
+    // verify(googleMapsHelperMock).isValidLocations(startLatitude, startLongitude,
+    //     endLatitude, endLongitude);
 
     // Create a ArgumentCaptor object to capture and store a String argument
-    ArgumentCaptor<String> quantityCaptor = ArgumentCaptor.forClass(String.class);
-    verify(restTemplateMock).getForObject(quantityCaptor.capture(), eq(PriceEstimate[].class));
+    // ArgumentCaptor<String> quantityCaptor = ArgumentCaptor.forClass(String.class);
+    // verify(restTemplateMock).getForObject(quantityCaptor.capture(), eq(PriceEstimate[].class));
 
     // Compare the captured value (url) to the expected one
-    String actualUrl = quantityCaptor.getValue();
-    assertEquals(url, actualUrl);
+    // String actualUrl = quantityCaptor.getValue();
+    // assertEquals(url, actualUrl);
 
   }
   */
