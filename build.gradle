@@ -1,32 +1,30 @@
 plugins {
     id 'java'
     id 'application'
-    // id 'org.springframework.boot' version '2.2.0.RELEASE'
-    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.12.RELEASE'
 }
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
-
-wrapper {
-    gradleVersion = '5.4'
-}
+sourceCompatibility = '11'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    compile group: 'org.springframework', name: 'spring-web', version: '5.2.2.RELEASE'
-    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.1'
-    compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.10.1'
+    implementation 'org.springframework:spring-web:5.3.21'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.13.3'
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.3'
+	implementation 'com.fasterxml.jackson.core:jackson-annotations:2.13.3'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.13.3'
 
-    testCompile group: 'org.mockito', name: 'mockito-junit-jupiter', version: '3.2.4'
-    testCompile 'org.junit.jupiter:junit-jupiter-api:5.6.0'
-    testImplementation('org.junit.jupiter:junit-jupiter:5.6.0')
+    testImplementation 'org.mockito:mockito-junit-jupiter:4.6.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
 
 }
+
 allprojects{
     test {
         testLogging.events ("STANDARD_ERROR")
